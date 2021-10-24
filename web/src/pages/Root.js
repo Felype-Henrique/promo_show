@@ -5,7 +5,7 @@ import{
     Route
 } from 'react-router-dom'
 import PagesPromotionSearch from "./Promotion/Search/Search";
-import PagesPromotionForm from "./Promotion/Search/Form/Form";
+import PagesPromotionForm from "./Promotion/Form/Form";
 
 const Root = () => {
     return (
