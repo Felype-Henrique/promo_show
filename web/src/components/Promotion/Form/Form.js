@@ -1,36 +1,55 @@
-import React from 'react'
-import './Form.css'
+import React, { useState } from "react";
+import "./Form.css";
 
-const PromotionForm = () => {
-    return(
-        <div>
-            <h1>Promo Show</h1>
-            <h2>Nova Promoção</h2>
-
-            <form>
-                <div className="promotion-form__group">
-                    <label htmlFor="title">Título</label>
-                    <input id="title"name="title" type="text"/>
-                </div>
-                <div className="promotion-form__group">
-                    <label htmlFor="url">Link</label>
-                    <input id="url"name="url" type="text"/>
-                </div>
-                <div className="promotion-form__group">
-                    <label htmlFor="imageUrl">Imagem (URL)</label>
-                    <input id="imageUrl"name="imageUrl" type="text"/>
-                </div>
-                <div className="promotion-form__group">
-                    <label htmlFor="price">Preço</label>
-                    <input id="price"name="price" type="number"/>
-                </div>
-
-                <div>
-                    <button type="submit">Salvar</button>
-                </div>
-            </form>
-        </div>
-    )
+const initialValue = {
+  title: "",
+  url: "",
+  imageUrl: "",
+  price: 0,
 };
 
-export default PromotionForm
+const PromotionForm = () => {
+  const [values, setValues] = useState(initialValue);
+
+  function onChange(ev){
+    const {name, value} = ev.target;
+
+    setValues({...values, [name]: value})
+  }
+
+  function onSubmit (ev){
+    ev.preventDefault();
+  }
+
+  return (
+    <div>
+      <h1>Promo Show</h1>
+      <h2>Nova Promoção</h2>
+
+      <form onSubmit={onSubmit}>
+        <div className="promotion-form__group">
+          <label htmlFor="title">Título</label>
+          <input id="title" name="title" type="text" onChange={onChange}/>
+        </div>
+        <div className="promotion-form__group">
+          <label htmlFor="url">Link</label>
+          <input id="url" name="url" type="text" onChange={onChange}/>
+        </div>
+        <div className="promotion-form__group">
+          <label htmlFor="imageUrl">Imagem (URL)</label>
+          <input id="imageUrl" name="imageUrl" type="text" onChange={onChange}/>
+        </div>
+        <div className="promotion-form__group">
+          <label htmlFor="price">Preço</label>
+          <input id="price" name="price" type="number" onChange={onChange}/>
+        </div>
+
+        <div>
+          <button type="submit">Salvar</button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default PromotionForm;
