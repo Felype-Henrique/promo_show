@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
+import axios from "axios";
 import "./Form.css";
 
 const initialValue = {
@@ -10,6 +12,7 @@ const initialValue = {
 
 const PromotionForm = () => {
   const [values, setValues] = useState(initialValue);
+  const history = useHistory();
 
   function onChange(ev){
     const {name, value} = ev.target;
@@ -19,6 +22,11 @@ const PromotionForm = () => {
 
   function onSubmit (ev){
     ev.preventDefault();
+
+    axios.post('http://localhost:5000/promotions', values)
+    .then((response) => {
+      history.push('/')
+    });
   }
 
   return (
